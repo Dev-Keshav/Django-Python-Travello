@@ -27,6 +27,7 @@ def register(request):
                                                 email=email, password=password1)
                 user.save()
                 messages.info(request, 'user has been created')
+                return redirect('login')
 
         else:
             messages.info(request, 'Your password is not matching')
@@ -54,3 +55,10 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'login.html')
+
+
+# User logout
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
